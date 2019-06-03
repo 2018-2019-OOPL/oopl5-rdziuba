@@ -1,24 +1,49 @@
 package pl.edu.ur.oopl5.stack;
 
-import java.util.EmptyStackException;   
+import java.util.EmptyStackException;
 
 /**
  */
 public class Stack extends AbstractStack {
 
+    private int[] s;
+    private int l = 0;
+    private int index = -1;
+
+    public Stack(int i) {
+        this.s = new int[i];
+    }
+
     @Override
     public void push(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if ((s.length - 1) > index) {
+            index++;
+            l++;
+            s[index] = i;
+        } else {
+            throw new StackOverflowError();
+        }
     }
 
     @Override
     public int pop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (!isEmpty()) {
+            int i = s[index];
+            index--;
+            l--;
+            return i;
+        } else {
+            throw new EmptyStackException();
+        }
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (index == -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
